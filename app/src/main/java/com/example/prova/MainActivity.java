@@ -6,6 +6,7 @@ import android.content.ClipDescription;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.ViewGroup;
 import android.view.DragEvent;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     private TextView t;
     private Button b;
     private ImageView i;
+    private ViewGroup.LayoutParams layoutParams;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         int action = event.getAction();
         switch(action){
             case DragEvent.ACTION_DRAG_STARTED:
-              if(event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-                  return true;
-              }else {
-                  return false;
-              }
+                layoutParams = (RelativeLayout.LayoutParams)v.getLayoutParams();
+              break;
         }
         return false;
     }
